@@ -1,0 +1,22 @@
+.popup__text-input {
+  box-sizing: border-box;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  padding: 10px 0;
+  font-size: 14px;
+  line-height: 1.2143;
+  margin-bottom: 5px;
+}
+
+.popup__text-input:focus {
+  outline-color: rgba(139, 176, 243, .3);
+}
+
+@media screen and (max-width: 600px), (max-height: 360px) {
+  .popup__text-input {
+    padding: 9px 0;
+    font-size: 12px;
+    line-height: 1.25;
+    margin-bottom: 1px;
+  }
+}

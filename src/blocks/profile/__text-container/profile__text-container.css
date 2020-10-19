@@ -1,0 +1,17 @@
+.profile__text-container {
+  display: flex;
+  width: 338px;
+  margin-left: 30px;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  align-items: baseline;
+}
+
+@media screen and (max-width: 485px) {
+  .profile__text-container {
+    width: 282px;
+    margin-left: 0;
+    text-align: center;
+    justify-content: center;
+  }
+}
