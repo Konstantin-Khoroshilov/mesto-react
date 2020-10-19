@@ -1,0 +1,24 @@
+.popup__title {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.21;
+  color: #000000;
+  margin: 0;
+  margin-top: 34px;
+  margin-bottom: 36px;
+  width: 358px;
+}
+
+.popup_type_delete-confirmation .popup__title {
+  margin-bottom: 32px;
+}
+
+@media screen and (max-width: 600px), (max-height: 360px) {
+  .popup__title {
+    font-size: 18px;
+    width: 85%;
+    margin: 0;
+    margin-top: 31px;
+    margin-bottom: 21px;
+  }
+}

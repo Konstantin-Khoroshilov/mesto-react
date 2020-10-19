@@ -1,0 +1,9 @@
+.popup__form-field_extra-height {
+  min-height: 84px;
+}
+
+@media screen and (max-width: 600px), (max-height: 360px) {
+  .popup__form-field_extra-height {
+    min-height: 71px;
+  }
+}

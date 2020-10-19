@@ -1,0 +1,16 @@
+.profile__avatar-container {
+  position: relative;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-block {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (max-width: 750px) {
+  .profile__avatar-container {
+    margin-bottom: 14px;
+  }
+}

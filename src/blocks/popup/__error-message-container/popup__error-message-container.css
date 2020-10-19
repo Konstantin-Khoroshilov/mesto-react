@@ -1,0 +1,19 @@
+.popup__error-message-container {
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FF0000;
+  width: 358px;
+}
+
+.popup_type_avatar-renew .popup__error-message-container {
+  min-height: 45px;
+}
+
+@media screen and (max-width: 600px), (max-height: 360px) {
+  .popup__error-message-container {
+    font-size: 10px;
+  }
+  .popup_type_avatar-renew .popup__error-message-container {
+    min-height: 20px;
+  }
+}

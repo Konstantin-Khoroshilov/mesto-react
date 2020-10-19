@@ -1,0 +1,13 @@
+.popup__form-field {
+  width: 358px;
+  min-height: 61px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 600px), (max-height: 360px) {
+  .popup__form-field {
+    width: 85%;
+    min-height: 44px;
+  }
+}
