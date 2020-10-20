@@ -12,9 +12,7 @@ function PopupWithform({
     <div className={`popup popup_type_${name}${isOpen ? " popup_opened" : ""}`}>
       <form className="popup__form" name={name} noValidate>
         <h2 className="popup__title">{title}</h2>
-        {children.map((item) => {
-          return item;
-        })}
+        {children}
         <input
           type="submit"
           className="popup__save-button popup__save-button_type_profile-editor"

@@ -1,28 +1,21 @@
 import React from "react";
 import avatar from "../../images/avatar.gif";
-import PopupWithForm from "../popupWithForm/PopupWithForm";
 import Card from "../card/Card";
 import api from "../../utils/api";
 import edit from "../../images/edit.svg";
 import loadErrorImage from "../../images/load-error.gif";
-import ImagePopup from "../ImagePopup/ImagePopup";
 
 function Main({
   onEditAvatar,
   onAddPlace,
   onEditProfile,
-  isEditProfilePopupOpen,
-  isAddPlacePopupOpen,
-  isEditAvatarPopupOpen,
-  isImageViewerPopupOpen,
-  onClose,
-  card,
   onCardClick,
 }) {
   const [userName, setUserName] = React.useState("Загрузка...");
   const [userDescription, setUserDescription] = React.useState("Загрузка...");
   const [userAvatar, setUserAvatar] = React.useState(avatar);
   const [cards, setCards] = React.useState([]);
+  const [cardsLoadStatus, setCardsLoadStatus] = React.useState("inProcess");
   //записываем с сервера на страницу имя пользователя, род занятий, аватар
   React.useEffect(() => {
     api
@@ -45,20 +38,15 @@ function Main({
   }, []);
   React.useEffect(() => {
     //загружаем с сервера начальные карточки
-    const cardsLoadingIcon = document.querySelector(".cards__loading-icon");
-    const cardsContainer = document.querySelector(".cards__container");
     api
       .getInitialCards()
       .then((data) => {
-        cardsLoadingIcon.style.display = "none";
         setCards(data);
+        setCardsLoadStatus("success");
       })
       .catch((err) => {
         console.log(err);
-        cardsLoadingIcon.style.display = "none";
-        cardsContainer.parentElement.style.color = "#ffffff";
-        cardsContainer.parentElement.textContent =
-          "Не удалось загрузить содержимое страницы.";
+        setCardsLoadStatus("fail");
       });
   }, []);
   return (
@@ -96,130 +84,22 @@ function Main({
         ></button>
       </section>
       <section className="cards">
-        <div className="cards__loading-icon"></div>
-        <ul className="cards__container">
-          {cards.map((card) => {
-            return (
-              <Card card={card} onCardClick={onCardClick} key={card._id} />
-            );
-          })}
-        </ul>
+        {cardsLoadStatus === "inProcess" ? (
+          <div className="cards__loading-icon"></div>
+        ) : cardsLoadStatus === "success" ? (
+          <ul className="cards__container">
+            {cards.map((card) => {
+              return (
+                <Card card={card} onCardClick={onCardClick} key={card._id} />
+              );
+            })}
+          </ul>
+        ) : (
+          <div style={{ color: "#fff" }}>
+            Не удалось загрузить содержимое страницы.
+          </div>
+        )}
       </section>
-      <PopupWithForm
-        name="profile-editor"
-        title="Редактировать профиль"
-        buttonValue="Сохранить"
-        isOpen={isEditProfilePopupOpen}
-        onClose={onClose}
-        children={[
-          <label key="profileNameInput" className="popup__form-field">
-            <input
-              type="text"
-              name="profile-name"
-              className="popup__text-input"
-              placeholder="Имя"
-              required
-              minLength="2"
-              maxLength="40"
-            />
-            <span
-              id="profile-name-error-container"
-              className="popup__error-message-container"
-            ></span>
-          </label>,
-          <label
-            key="profileJobInput"
-            className="popup__form-field popup__form-field_extra-height"
-          >
-            <input
-              type="text"
-              name="profile-job"
-              className="popup__text-input"
-              placeholder="О себе"
-              required
-              minLength="2"
-              maxLength="200"
-            />
-            <span
-              id="profile-job-error-container"
-              className="popup__error-message-container"
-            ></span>
-          </label>,
-        ]}
-      />
-      <PopupWithForm
-        name="cards-inputter"
-        title="Новое место"
-        buttonValue="Создать"
-        isOpen={isAddPlacePopupOpen}
-        onClose={onClose}
-        children={[
-          <label key="cardNameInput" className="popup__form-field">
-            <input
-              type="text"
-              name="card-name"
-              placeholder="Название"
-              className="popup__text-input"
-              required
-              minLength="1"
-              maxLength="30"
-            />
-            <span
-              id="card-name-error-container"
-              className="popup__error-message-container"
-            ></span>
-          </label>,
-          <label
-            key="cardLinkInput"
-            className="popup__form-field popup__form-field_extra-height"
-          >
-            <input
-              type="url"
-              name="card-link"
-              placeholder="Ссылка на картинку"
-              className="popup__text-input"
-              required
-            />
-            <span
-              id="card-link-error-container"
-              className="popup__error-message-container"
-            ></span>
-          </label>,
-        ]}
-      />
-      <PopupWithForm
-        name="avatar-renew"
-        title="Обновить аватар"
-        buttonValue="Сохранить"
-        isOpen={isEditAvatarPopupOpen}
-        onClose={onClose}
-        children={[
-          <label key="avatarLinkInput" className="popup__form-field">
-            <input
-              type="url"
-              name="avatar-link"
-              placeholder="Ссылка на картинку"
-              className="popup__text-input"
-              required
-            />
-            <span
-              id="avatar-link-error-container"
-              className="popup__error-message-container"
-            ></span>
-          </label>,
-        ]}
-      />
-      <PopupWithForm
-        name="delete-confirmation"
-        title="Вы уверены?"
-        buttonValue="Да"
-        children={[]}
-      />
-      <ImagePopup
-        isOpen={isImageViewerPopupOpen}
-        card={card}
-        onClose={onClose}
-      />
     </main>
   );
 }
