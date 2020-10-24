@@ -159,6 +159,15 @@ function () {
       });
     }
   }, {
+    key: "changeLikeCardStatus",
+    value: function changeLikeCardStatus(cardId, isLiked) {
+      if (isLiked) {
+        return this.removeLike(cardId);
+      } else {
+        return this.setLike(cardId);
+      }
+    }
+  }, {
     key: "updateAvatar",
     value: function updateAvatar(link) {
       return fetch(this._updateAvatarUrl, {

@@ -144,6 +144,14 @@ class Api {
       );
     });
   }
+
+  changeLikeCardStatus(cardId, isLiked) {
+    if (isLiked) {
+      return this.removeLike(cardId);
+    } else {
+      return this.setLike(cardId);
+    }
+  }
   updateAvatar(link) {
     return fetch(this._updateAvatarUrl, {
       method: "PATCH",

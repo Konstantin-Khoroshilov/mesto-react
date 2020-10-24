@@ -1,54 +1,20 @@
 import React from "react";
-import avatar from "../../images/avatar.gif";
 import Card from "../card/Card";
-import api from "../../utils/api";
 import edit from "../../images/edit.svg";
-import loadErrorImage from "../../images/load-error.gif";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function Main({
   onEditAvatar,
   onAddPlace,
   onEditProfile,
   onCardClick,
+  onCardLike,
+  onCardDelete,
+  cardsLoadStatus,
+  cards,
 }) {
-  const [userName, setUserName] = React.useState("Загрузка...");
-  const [userDescription, setUserDescription] = React.useState("Загрузка...");
-  const [userAvatar, setUserAvatar] = React.useState(avatar);
-  const [cards, setCards] = React.useState([]);
-  const [cardsLoadStatus, setCardsLoadStatus] = React.useState("inProcess");
-  //записываем с сервера на страницу имя пользователя, род занятий, аватар
-  React.useEffect(() => {
-    api
-      .getUserInfo()
-      .then((data) => {
-        setUserName(data.name);
-        setUserDescription(data.about);
-        setUserAvatar(data.avatar);
-      })
-      //в случае ошибки
-      .catch((err) => {
-        //на странице будет записан текст "Не удалось..."
-        setUserName("Не удалось загрузить имя пользователя");
-        setUserDescription("Не удалось загрузить должность пользователя");
-        //вместо аватара будет загружена гифка с сообщением об ошибке
-        setUserAvatar(loadErrorImage);
-        //текст ошибки будет выведен в консоль
-        console.log(err);
-      });
-  }, []);
-  React.useEffect(() => {
-    //загружаем с сервера начальные карточки
-    api
-      .getInitialCards()
-      .then((data) => {
-        setCards(data);
-        setCardsLoadStatus("success");
-      })
-      .catch((err) => {
-        console.log(err);
-        setCardsLoadStatus("fail");
-      });
-  }, []);
+  const currentUser = React.useContext(CurrentUserContext);
+
   return (
     <main className="content">
       <section className="profile">
@@ -56,7 +22,7 @@ function Main({
           <div className="profile__avatar-container" onClick={onEditAvatar}>
             <img
               className="profile__avatar"
-              src={userAvatar}
+              src={currentUser.avatar}
               alt="аватар пользователя"
             />
             <div className="profile__avatar-edit-block">
@@ -68,13 +34,13 @@ function Main({
             </div>
           </div>
           <div className="profile__text-container">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button
               type="button"
               className="profile__edit-button"
               onClick={onEditProfile}
             ></button>
-            <p className="profile__job">{userDescription}</p>
+            <p className="profile__job">{currentUser.about}</p>
           </div>
         </div>
         <button
@@ -90,7 +56,13 @@ function Main({
           <ul className="cards__container">
             {cards.map((card) => {
               return (
-                <Card card={card} onCardClick={onCardClick} key={card._id} />
+                <Card
+                  card={card}
+                  onCardClick={onCardClick}
+                  onCardLike={onCardLike}
+                  onCardDelete={onCardDelete}
+                  key={card._id}
+                />
               );
             })}
           </ul>

@@ -23,6 +23,8 @@
 @import url(./blocks/cards/__like-button/cards__like-button.css);
 @import url(./blocks/cards/__like-button/_active/cards__like-button_active.css);
 @import url(./blocks/cards/__delete-button/cards__delete-button.css);
+@import url(./blocks/cards/__delete-button/_visible/cards__delete-button_visible.css);
+@import url(./blocks/cards/__delete-button/_hidden/cards__delete-button_hidden.css);
 @import url(./blocks/cards/__heading/cards__heading.css);
 @import url(./blocks/cards/__loading-icon/cards__loading-icon.css);
 @import url(./blocks/footer/footer.css);
