@@ -70,7 +70,8 @@ function App() {
       const newCards = cards.filter((item) => {
         return item._id !== card._id;
       });
-      setCards(newCards);
+      setCards(newCards)
+      .catch((error) => console.log(error));
     });
   }
   const [cardsLoadStatus, setCardsLoadStatus] = React.useState("inProcess");
