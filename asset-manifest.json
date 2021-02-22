@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Konstantin-Khoroshilov/mesto-react/static/css/main.ce7cfa3d.chunk.css",
+    "main.js": "/Konstantin-Khoroshilov/mesto-react/static/js/main.aca0eb5c.chunk.js",
+    "main.js.map": "/Konstantin-Khoroshilov/mesto-react/static/js/main.aca0eb5c.chunk.js.map",
+    "runtime-main.js": "/Konstantin-Khoroshilov/mesto-react/static/js/runtime-main.9792c601.js",
+    "runtime-main.js.map": "/Konstantin-Khoroshilov/mesto-react/static/js/runtime-main.9792c601.js.map",
+    "static/js/2.76d7b76d.chunk.js": "/Konstantin-Khoroshilov/mesto-react/static/js/2.76d7b76d.chunk.js",
+    "static/js/2.76d7b76d.chunk.js.map": "/Konstantin-Khoroshilov/mesto-react/static/js/2.76d7b76d.chunk.js.map",
+    "index.html": "/Konstantin-Khoroshilov/mesto-react/index.html",
+    "precache-manifest.d5e3c634116f56f56ebdf37e790ec590.js": "/Konstantin-Khoroshilov/mesto-react/precache-manifest.d5e3c634116f56f56ebdf37e790ec590.js",
+    "service-worker.js": "/Konstantin-Khoroshilov/mesto-react/service-worker.js",
+    "static/css/main.ce7cfa3d.chunk.css.map": "/Konstantin-Khoroshilov/mesto-react/static/css/main.ce7cfa3d.chunk.css.map",
+    "static/js/2.76d7b76d.chunk.js.LICENSE.txt": "/Konstantin-Khoroshilov/mesto-react/static/js/2.76d7b76d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/Konstantin-Khoroshilov/mesto-react/static/media/like-button.6c74d9b5.svg",
+    "static/media/load-error.gif": "/Konstantin-Khoroshilov/mesto-react/static/media/load-error.bb4a1e86.gif",
+    "static/media/logo.svg": "/Konstantin-Khoroshilov/mesto-react/static/media/logo.855a8c98.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9792c601.js",
+    "static/js/2.76d7b76d.chunk.js",
+    "static/css/main.ce7cfa3d.chunk.css",
+    "static/js/main.aca0eb5c.chunk.js"
+  ]
+}
